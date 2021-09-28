@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
         const isValid = FILE_TYPE_MAP[file.mimetype];
         let uploadError = new Error('invalid image type');
         if (isValid) { uploadError = null; }
-        cb(uploadError, '/public/uploads')
+        cb(uploadError, 'public/uploads')
     },
     filename: function (req, file, cb) {
         const fileName = file.originalname.replace(' ', '-');

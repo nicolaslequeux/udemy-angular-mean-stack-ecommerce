@@ -6,7 +6,7 @@
 # dependencies
 /nlx/node_modules
 /backend/node_modules
-
+/backend-full-udemy/node_modules
 
 # System Files
 .DS_Store
