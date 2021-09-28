@@ -9,6 +9,7 @@ import {
 } from '@nlx/products';
 import { MessageService } from 'primeng/api';
 import { timer } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'admin-products-form',
@@ -21,18 +22,21 @@ export class ProductsFormComponent implements OnInit {
   isSubmitted = false;
   categories: Category[] = [];
   imageDisplay: string | ArrayBuffer | null = null;
+  currentProductId = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private categoriesService: CategoriesService,
     private productsService: ProductsService,
     private messageService: MessageService,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this._initForm();
     this._getCategories();
+    this._checkEditMode();
   }
 
   onCancel() {
@@ -46,7 +50,11 @@ export class ProductsFormComponent implements OnInit {
     Object.keys(this.productForm).map((key) => {
       productFormData.append(key, this.productForm[key].value);
     });
-    this._addProduct(productFormData);
+    if (this.editMode) {
+      this._updateProduct(productFormData);
+    } else {
+      this._addProduct(productFormData);
+    }
   }
 
   onImageUpload(event: any) {
@@ -55,7 +63,7 @@ export class ProductsFormComponent implements OnInit {
     // const file: File = (target.files as FileList)[0];
     if (file) {
       this.form.patchValue({ image: file });
-      this.form.get('image').updateValueAndValidity()
+      this.form.get('image').updateValueAndValidity();
       const fileReader = new FileReader();
       fileReader.onload = () => {
         this.imageDisplay = fileReader.result;
@@ -75,6 +83,28 @@ export class ProductsFormComponent implements OnInit {
       richDescription: [''],
       image: ['', Validators.required],
       isFeatured: [false],
+    });
+  }
+
+  private _checkEditMode() {
+    this.route.params.subscribe((params) => {
+      if (params.id) {
+        this.editMode = true;
+        this.currentProductId = params.id;
+        this.productsService.getProduct(params.id).subscribe((product) => {
+          this.productForm.name.setValue(product.name);
+          this.productForm.category.setValue(product.category.id);
+          this.productForm.brand.setValue(product.brand);
+          this.productForm.price.setValue(product.price);
+          this.productForm.countInStock.setValue(product.countInStock);
+          this.productForm.isFeatured.setValue(product.isFeatured);
+          this.productForm.description.setValue(product.description);
+          this.productForm.richDescription.setValue(product.richDescription);
+          this.imageDisplay = product.image;
+          this.productForm.image.setValidators([]);
+          this.productForm.image.updateValueAndValidity();
+        });
+      }
     });
   }
 
@@ -106,6 +136,32 @@ export class ProductsFormComponent implements OnInit {
         });
       }
     );
+  }
+
+  private _updateProduct(productFormData: FormData) {
+    this.productsService
+      .updateProduct(productFormData, this.currentProductId)
+      .subscribe(
+        () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Product is updated!',
+          });
+          timer(2000)
+            .toPromise()
+            .then(() => {
+              this.location.back();
+            });
+        },
+        () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Product is not updated!',
+          });
+        }
+      );
   }
 
   get productForm() {

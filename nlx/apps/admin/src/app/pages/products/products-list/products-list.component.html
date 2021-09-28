@@ -12,7 +12,7 @@
     </div>
     <div class="grid">
       <div class="col-12">
-        <p-table [value]="products" responsiveLayout="scroll" styleClass="p-datatable-gridlines">
+        <p-table [value]="products" responsiveLayout="scroll" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="5">
           <ng-template pTemplate="header">
               <tr>
                 <!-- <th>Id</th> -->
@@ -36,8 +36,8 @@
                 <td>{{product.category.name}}</td>
                 <td>{{product.dateCreated | date:'short'}}</td>
                 <td>
-                  <p-button styleClass="p-button-danger mr-2" icon="pi pi-trash" (click)="deleteProduct(product.id)"></p-button>
                   <p-button styleClass="p-button-success" icon="pi pi-pencil" (click)="updateProduct(product.id)"></p-button>
+                  <p-button styleClass="p-button-danger mr-2" icon="pi pi-trash" (click)="deleteProduct(product.id)"></p-button>
                 </td>
               </tr>
           </ng-template>
