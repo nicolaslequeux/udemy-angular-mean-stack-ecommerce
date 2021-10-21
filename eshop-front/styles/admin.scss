@@ -13,9 +13,9 @@
 
 //Shared
 @import './apps/admin/shell.scss';
+@import './apps/admin/dashboard.scss';
 
-// Placed after primeng as overwrite primeng font
-
-// Libs
-@import './libs/ui/ui.scss';
+  // Placed after primeng as overwrite primeng font
+  // Libs
+  @import './libs/ui/ui.scss';
 @import './libs/users/users.scss';
