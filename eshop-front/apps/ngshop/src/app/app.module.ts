@@ -9,6 +9,9 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { NavComponent } from './shared/nav/nav.component';
+import { ProductsModule } from '@nlx/products';
+
 import { UiModule } from '@nlx/ui';
 import { AccordionModule } from 'primeng/accordion';
 
@@ -30,6 +33,7 @@ const routes: Routes = [
     ProductListComponent,
     HeaderComponent,
     FooterComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +41,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     UiModule,
     AccordionModule,
+    ProductsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
