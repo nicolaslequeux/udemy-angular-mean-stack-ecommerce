@@ -14,6 +14,7 @@ import { ProductsModule } from '@nlx/products';
 
 import { UiModule } from '@nlx/ui';
 import { AccordionModule } from 'primeng/accordion';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -39,6 +40,7 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
+    HttpClientModule,
     UiModule,
     AccordionModule,
     ProductsModule,
