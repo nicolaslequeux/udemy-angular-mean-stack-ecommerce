@@ -8,9 +8,12 @@ import { CategoriesBannerComponent } from './components/categories-banner/catego
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { FeaturedProductsComponent } from './components/featured-products/featured-products.component';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
+import { ProductPageComponent } from './pages/product-page/product-page.component';
 
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
+import { RatingModule } from 'primeng/rating';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 const routes: Routes = [
   {
@@ -21,15 +24,21 @@ const routes: Routes = [
     path: 'category/:categoryid',
     component: ProductsListComponent,
   },
+  {
+    path: 'products/:productid',
+    component: ProductPageComponent,
+  },
 ];
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    FormsModule,
     ButtonModule,
     CheckboxModule,
-    FormsModule,
+    RatingModule,
+    InputNumberModule,
   ],
   declarations: [
     ProductsSearchComponent,
@@ -37,6 +46,7 @@ const routes: Routes = [
     ProductItemComponent,
     FeaturedProductsComponent,
     ProductsListComponent,
+    ProductPageComponent,
   ],
   exports: [
     ProductsSearchComponent,
@@ -44,6 +54,7 @@ const routes: Routes = [
     ProductItemComponent,
     FeaturedProductsComponent,
     ProductsListComponent,
+    ProductPageComponent,
   ],
 })
 export class ProductsModule {}
