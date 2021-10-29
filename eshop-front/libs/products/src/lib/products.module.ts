@@ -14,6 +14,7 @@ import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { RatingModule } from 'primeng/rating';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { UiModule } from '@nlx/ui';
 
 const routes: Routes = [
   {
@@ -39,6 +40,7 @@ const routes: Routes = [
     CheckboxModule,
     RatingModule,
     InputNumberModule,
+    UiModule,
   ],
   declarations: [
     ProductsSearchComponent,
