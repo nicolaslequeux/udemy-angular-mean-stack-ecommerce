@@ -1,4 +1,3 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from '../../models/category';
@@ -9,12 +8,12 @@ import { ProductsService } from '../../services/products.service';
 @Component({
   selector: 'products-list',
   templateUrl: './products-list.component.html',
-  styles: [],
+  styles: []
 })
 export class ProductsListComponent implements OnInit {
   products: Product[] = [];
   categories: Category[] = [];
-  isCategoryPage = false;
+  isCategoryPage: boolean;
 
   constructor(
     private prodService: ProductsService,
@@ -24,14 +23,14 @@ export class ProductsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-        params.categoryid ? this._getProducts([params.categoryid]) : this._getProducts();
-        params.categoryid ? (this.isCategoryPage = true) : (this.isCategoryPage = false);
-      });
-      this._getCategories();
+      params.categoryid ? this._getProducts([params.categoryid]) : this._getProducts();
+      params.categoryid ? (this.isCategoryPage = true) : (this.isCategoryPage = false);
+    });
+    this._getCategories();
   }
 
-  private _getProducts(cartegoriesFilter?: any) {
-    this.prodService.getProducts(cartegoriesFilter).subscribe((resProducts) => {
+  private _getProducts(categoriesFilter?: string[]) {
+    this.prodService.getProducts(categoriesFilter).subscribe((resProducts) => {
       this.products = resProducts;
     });
   }
@@ -46,6 +45,7 @@ export class ProductsListComponent implements OnInit {
     const selectedCategories = this.categories
       .filter((category) => category.checked)
       .map((category) => category.id);
+
     this._getProducts(selectedCategories);
   }
 }

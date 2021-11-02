@@ -6,10 +6,11 @@ import { Order } from '../models/order';
 import { environment } from '@env/environment';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class OrdersService {
-  apiURLOrders = environment.apiURL + 'orders';
+  apiURLOrders = environment.apiUrl + 'orders';
+  apiURLProducts = environment.apiUrl + 'products';
 
   constructor(private http: HttpClient) {}
 
@@ -25,10 +26,7 @@ export class OrdersService {
     return this.http.post<Order>(this.apiURLOrders, order);
   }
 
-  updateOrder(
-    orderStaus: { status: string },
-    orderId: string
-  ): Observable<Order> {
+  updateOrder(orderStaus: { status: string }, orderId: string): Observable<Order> {
     return this.http.put<Order>(`${this.apiURLOrders}/${orderId}`, orderStaus);
   }
 
@@ -46,5 +44,9 @@ export class OrdersService {
     return this.http
       .get<number>(`${this.apiURLOrders}/get/totalsales`)
       .pipe(map((objectValue: any) => objectValue.totalsales));
+  }
+
+  getProduct(productId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiURLProducts}/${productId}`);
   }
 }

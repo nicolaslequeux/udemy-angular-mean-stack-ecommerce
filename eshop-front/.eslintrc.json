@@ -11,12 +11,7 @@
           {
             "enforceBuildableLibDependency": true,
             "allow": [],
-            "depConstraints": [
-              {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
-              }
-            ]
+            "depConstraints": [{ "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }]
           }
         ],
         "no-empty-function": "off",
@@ -26,6 +21,7 @@
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"],
+      "parserOptions": { "project": "./tsconfig.*?.json" },
       "rules": {}
     },
     {

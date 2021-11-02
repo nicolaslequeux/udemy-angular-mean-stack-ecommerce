@@ -10,7 +10,6 @@ import { ProductsService } from '../../services/products.service';
   styles: []
 })
 export class FeaturedProductsComponent implements OnInit, OnDestroy {
-
   featuredProducts: Product[] = [];
   endSubs$: Subject<any> = new Subject();
 

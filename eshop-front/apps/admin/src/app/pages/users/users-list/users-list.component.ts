@@ -1,16 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { User, UsersService } from '@nlx/users';
+import { User, UsersService } from '@bluebits/users';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'admin-users-list',
   templateUrl: './users-list.component.html',
-  styles: [],
+  styles: []
 })
-export class UsersListComponent implements OnInit, OnDestroy {
+export class UsersListComponent implements OnInit {
   users: User[] = [];
   endsubs$: Subject<any> = new Subject();
 
@@ -45,18 +45,18 @@ export class UsersListComponent implements OnInit, OnDestroy {
               this.messageService.add({
                 severity: 'success',
                 summary: 'Success',
-                detail: 'User is deleted!',
+                detail: 'User is deleted!'
               });
             },
             () => {
               this.messageService.add({
                 severity: 'error',
                 summary: 'Error',
-                detail: 'User is not deleted!',
+                detail: 'User is not deleted!'
               });
             }
           );
-      },
+      }
     });
   }
 
@@ -66,7 +66,6 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
   getCountryName(countryKey: string) {
     if (countryKey) return this.usersService.getCountry(countryKey);
-    return null;
   }
 
   private _getUsers() {

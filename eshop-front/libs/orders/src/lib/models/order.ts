@@ -1,5 +1,5 @@
 import { OrderItem } from './order-item';
-import { User } from '@nlx/users';
+import { User } from '@bluebits/users';
 
 export class Order {
   id?: string;
@@ -12,6 +12,6 @@ export class Order {
   phone?: string;
   status?: number;
   totalPrice?: string;
-  user?: User;
+  user?: any;
   dateOrdered?: string;
 }

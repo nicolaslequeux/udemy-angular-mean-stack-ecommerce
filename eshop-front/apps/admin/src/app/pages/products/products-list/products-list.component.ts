@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product, ProductsService } from '@nlx/products';
+import { ProductsService } from '@bluebits/products';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -8,10 +8,10 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'admin-products-list',
   templateUrl: './products-list.component.html',
-  styles: [],
+  styles: []
 })
-export class ProductsListComponent implements OnInit, OnDestroy {
-  products: Product[] = [];
+export class ProductsListComponent implements OnInit {
+  products = [];
   endsubs$: Subject<any> = new Subject();
 
   constructor(
@@ -58,18 +58,18 @@ export class ProductsListComponent implements OnInit, OnDestroy {
               this.messageService.add({
                 severity: 'success',
                 summary: 'Success',
-                detail: 'Product is deleted!',
+                detail: 'Product is deleted!'
               });
             },
             () => {
               this.messageService.add({
                 severity: 'error',
                 summary: 'Error',
-                detail: 'Product is not deleted!',
+                detail: 'Product is not deleted!'
               });
             }
           );
-      },
+      }
     });
   }
 }

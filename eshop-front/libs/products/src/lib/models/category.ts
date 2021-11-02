@@ -5,4 +5,3 @@ export class Category {
   color?: string;
   checked?: boolean;
 }
-

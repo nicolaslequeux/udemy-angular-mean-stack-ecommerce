@@ -1,16 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { OrdersService } from '@nlx/orders';
-import { ProductsService } from '@nlx/products';
-import { UsersService } from '@nlx/users';
+import { OrdersService } from '@bluebits/orders';
+import { ProductsService } from '@bluebits/products';
+import { UsersService } from '@bluebits/users';
 import { combineLatest, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'admin-dashboard',
-  templateUrl: './dashboard.component.html',
+  templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  statistics: any = [];
+  statistics = [];
   endsubs$: Subject<any> = new Subject();
 
   constructor(
@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.ordersService.getOrdersCount(),
       this.productService.getProductsCount(),
       this.userService.getUsersCount(),
-      this.ordersService.getTotalSales(),
+      this.ordersService.getTotalSales()
     ])
       .pipe(takeUntil(this.endsubs$))
       .subscribe((values) => {

@@ -7,10 +7,9 @@ import { CategoriesService } from '../../services/categories.service';
 @Component({
   selector: 'products-categories-banner',
   templateUrl: './categories-banner.component.html',
-  styles: [],
+  styles: []
 })
 export class CategoriesBannerComponent implements OnInit, OnDestroy {
-
   categories: Category[] = [];
   endSubs$: Subject<any> = new Subject();
 

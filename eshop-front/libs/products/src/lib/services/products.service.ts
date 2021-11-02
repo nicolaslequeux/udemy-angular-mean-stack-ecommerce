@@ -2,21 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
 import { environment } from '@env/environment';
 import { Product } from '../models/product';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ProductsService {
-  apiURLProducts = environment.apiURL + 'products';
+  apiURLProducts = environment.apiUrl + 'products';
 
   constructor(private http: HttpClient) {}
-
-  // getProducts(): Observable<Product[]> {
-  //   return this.http.get<Product[]>(this.apiURLProducts);
-  // }
 
   getProducts(categoriesFilter?: string[]): Observable<Product[]> {
     let params = new HttpParams();
@@ -35,10 +30,7 @@ export class ProductsService {
   }
 
   updateProduct(productData: FormData, productid: string): Observable<Product> {
-    return this.http.put<Product>(
-      `${this.apiURLProducts}/${productid}`,
-      productData
-    );
+    return this.http.put<Product>(`${this.apiURLProducts}/${productid}`, productData);
   }
 
   deleteProduct(productId: string): Observable<any> {
@@ -52,8 +44,6 @@ export class ProductsService {
   }
 
   getFeaturedProducts(count: number): Observable<Product[]> {
-    return this.http.get<Product[]>(
-      `${this.apiURLProducts}/get/featured/${count}`
-    );
+    return this.http.get<Product[]>(`${this.apiURLProducts}/get/featured/${count}`);
   }
 }

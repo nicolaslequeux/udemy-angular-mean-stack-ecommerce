@@ -7,10 +7,10 @@ import { User } from '../models/user';
 import { LocalstorageService } from './localstorage.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
-  apiURLUsers = environment.apiURL + 'users';
+  apiURLUsers = environment.apiUrl + 'users';
 
   constructor(
     private http: HttpClient,
@@ -19,10 +19,7 @@ export class AuthService {
   ) {}
 
   login(email: string, password: string): Observable<User> {
-    return this.http.post<User>(`${this.apiURLUsers}/login`, {
-      email,
-      password,
-    });
+    return this.http.post<User>(`${this.apiURLUsers}/login`, { email, password });
   }
 
   logout() {

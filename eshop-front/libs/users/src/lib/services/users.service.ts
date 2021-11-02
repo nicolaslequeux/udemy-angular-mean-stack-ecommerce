@@ -5,13 +5,13 @@ import { map } from 'rxjs/operators';
 import { User } from '../models/user';
 import { environment } from '@env/environment';
 import * as countriesLib from 'i18n-iso-countries';
-declare const require: (arg0: string) => countriesLib.LocaleData;
+declare const require;
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class UsersService {
-  apiURLUsers = environment.apiURL + 'users';
+  apiURLUsers = environment.apiUrl + 'users';
 
   constructor(private http: HttpClient) {
     countriesLib.registerLocale(require('i18n-iso-countries/langs/en.json'));
@@ -44,12 +44,10 @@ export class UsersService {
   }
 
   getCountries(): { id: string; name: string }[] {
-    return Object.entries(
-      countriesLib.getNames('en', { select: 'official' })
-    ).map((entry) => {
+    return Object.entries(countriesLib.getNames('en', { select: 'official' })).map((entry) => {
       return {
         id: entry[0],
-        name: entry[1],
+        name: entry[1]
       };
     });
   }
