@@ -6,9 +6,12 @@ import { LocalstorageService } from './localstorage.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+
   constructor(private router: Router, private localStorageToken: LocalstorageService) {}
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+
     const token = this.localStorageToken.getToken();
 
     if (token) {
@@ -23,4 +26,5 @@ export class AuthGuard implements CanActivate {
   private _tokenExpired(expiration): boolean {
     return Math.floor(new Date().getTime() / 1000) >= expiration;
   }
+
 }
