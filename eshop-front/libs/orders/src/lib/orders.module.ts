@@ -14,8 +14,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputMaskModule } from 'primeng/inputmask';
 import { DropdownModule } from 'primeng/dropdown';
 import { ThankYouComponent } from './pages/thank-you/thank-you.component';
-import { AuthGuard, UsersModule } from '@bluebits/users';
-
+import { AuthGuard } from '@bluebits/users';
 const routes: Routes = [
   {
     path: 'cart',
@@ -42,8 +41,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     InputTextModule,
     InputMaskModule,
-    DropdownModule,
-    UsersModule
+    DropdownModule
   ],
   providers: [],
   declarations: [

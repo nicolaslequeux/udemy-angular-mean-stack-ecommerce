@@ -11,11 +11,9 @@ import { OrdersService } from '../../services/orders.service';
   styles: []
 })
 export class CartPageComponent implements OnInit, OnDestroy {
-
   cartItemsDetailed: CartItemDetailed[] = [];
   cartCount = 0;
   endSubs$: Subject<any> = new Subject();
-
   constructor(
     private router: Router,
     private cartService: CartService,
@@ -63,5 +61,4 @@ export class CartPageComponent implements OnInit, OnDestroy {
       true
     );
   }
-
 }

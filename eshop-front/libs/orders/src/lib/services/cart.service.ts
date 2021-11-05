@@ -7,7 +7,6 @@ export const CART_KEY = 'cart';
   providedIn: 'root'
 })
 export class CartService {
-
   cart$: BehaviorSubject<Cart> = new BehaviorSubject(this.getCart());
 
   constructor() {}

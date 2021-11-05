@@ -26,7 +26,7 @@ describe('UsersEffects', () => {
       ]
     });
 
-    effects = TestBed.get(UsersEffects);
+    effects = TestBed.inject(UsersEffects);
   });
 
   describe('init$', () => {
