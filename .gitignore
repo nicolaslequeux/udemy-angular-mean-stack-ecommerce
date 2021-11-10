@@ -5,7 +5,11 @@
 
 # dependencies
 /eshop-front/node_modules
+
+
 /eshop-backend/node_modules
+/eshop-backend/.env
+/eshop-backend/.prettierrc
 
 
 # System Files
