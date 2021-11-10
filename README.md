@@ -18,7 +18,7 @@ Stripe disabled
 #### backend nodeJS + mongoDB
  - Hosting: Heroku
 
-frontend ng-shop
+### frontend ng-shop
  - Hosting: Firebase
  - Folder: /public
  - $: nx build ngshop --output-path public --prod)
