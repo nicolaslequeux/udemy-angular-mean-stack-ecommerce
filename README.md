@@ -18,21 +18,16 @@ Stripe disabled
 #### backend nodeJS + mongoDB
  - Hosting: Heroku
 
-### frontend ng-shop
+#### frontend ng-shop
  - Hosting: Firebase
+ - $: nx build ngshop --output-path public --prod
+ - $: firebase login + init + deploy
  - Folder: /public
- - $: nx build ngshop --output-path public --prod)
  - $: firebase deploy
  - Hosting URL: https://nlx-mean-eshop.web.app
 
 #### frontend admin
- - Hosting: Firebase
- - Folder: public-admin
- - $: nx build admin --output-path public-admin  --prod    
-
-
-#### Firebase
-$: firebase login
-$: firebase init
-$: firebase deploy
-
+ - Hosting: Infinityfree.com (FTP)
+ - $: nx build admin --prod    
+ - Folder: doc (Angular default)
+- Hosting URL: http://nlx-mean-eshop-admin.infinityfreeapp.com/
